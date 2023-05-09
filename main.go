@@ -3,12 +3,13 @@ package service
 import (
 	"context"
 	"errors"
-	"host_final_release/db"
 	"io"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/Ka8eeM/file_host_with_go/db"
+	storage "github.com/Ka8eeM/file_host_with_go/storage/files"
 	kitlog "github.com/go-kit/log"
 )
 
@@ -63,7 +64,7 @@ func (s Srvs) Upload(ctx context.Context, opts Item) (string, error) {
 
 func (s Srvs) Get(ctx context.Context, id string) (Item, error) {
 	// get expiration from id
-	splitedID := strings.Split(id, "_")
+	splitedID := strings.Split(id, "-")
 	if len(splitedID) != 2 {
 		s.logger.Log(
 			"message", "invalid id",

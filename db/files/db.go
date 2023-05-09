@@ -4,12 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"host_final_release/db"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"time"
 
+	"github.com/Ka8eeM/file_host_with_go/db"
 	kitlog "github.com/go-kit/log"
 )
 

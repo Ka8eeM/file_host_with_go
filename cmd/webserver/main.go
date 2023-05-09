@@ -3,10 +3,11 @@ package main
 import (
 	"os"
 
-	db "db/files"
-	dbMemory "db/memory"
-	storage "storage/files"
+	itemService "github.com/Ka8eeM/file_host_with_go"
+	db "github.com/Ka8eeM/file_host_with_go/db/files"
+	dbMemory "github.com/Ka8eeM/file_host_with_go/db/memory"
 
+	storage "github.com/Ka8eeM/file_host_with_go/storage/files"
 	"github.com/gin-gonic/gin"
 	kitlog "github.com/go-kit/log"
 )
@@ -21,7 +22,7 @@ func main() {
 
 	// init service
 	loggerService := kitlog.With(kitlog.NewJSONLogger(os.Stdout), "ts", kitlog.DefaultTimestampUTC)
-	storageService, err := storage.NewService(loggerService, "./uploads")
+	storageService, err := storage.New(loggerService, "./uploads")
 
 	if err != nil {
 		loggerService.Log("message", "could not init storage service", "error", err)

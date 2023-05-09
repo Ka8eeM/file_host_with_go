@@ -8,6 +8,7 @@ import (
 
 	"time"
 
+	itemService "github.com/Ka8eeM/file_host_with_go"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,6 +16,7 @@ func getItem(c *gin.Context) {
 	srvc := c.MustGet("itemService").(*itemService.Srvs)
 	id := c.Params.ByName("id")
 	file, err := srvc.Get(c, id)
+	fmt.Println("error", err)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 	} else {
